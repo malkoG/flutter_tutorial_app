@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_trial_app/account_page.dart';
+import 'package:flutter_trial_app/home_page.dart';
+import 'package:flutter_trial_app/search_page.dart';
 
 class TabPage extends StatefulWidget {
   @override
@@ -9,9 +12,9 @@ class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0;
 
   List<Widget> pages = [
-    Text("Page1"),
-    Text("Page2"),
-    Text("Page3"),
+    HomePage(),
+    SearchPage(),
+    AccountPage(),
   ];
 
   @override
@@ -19,6 +22,7 @@ class _TabPageState extends State<TabPage> {
     return Scaffold(
       body: Center(child: pages[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        fixedColor: Colors.black,
         onTap: (index) => setState(() {
           _selectedIndex = index;
         }),
