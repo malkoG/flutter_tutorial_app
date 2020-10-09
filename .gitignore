@@ -61,4 +61,7 @@ lib/generated_plugin_registrant.dart
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 .idea/workspace.xml
+
+google-services.json
+
 # End of https://www.toptal.com/developers/gitignore/api/flutter
