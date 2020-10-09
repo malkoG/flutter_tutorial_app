@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AccountPage extends StatefulWidget {
+  final FirebaseUser user;
+
+  AccountPage(this.user);
+
   @override
   _AccountPageState createState() => _AccountPageState();
 }
@@ -48,7 +52,7 @@ class _AccountPageState extends State<AccountPage> {
                     width: 80.0,
                     height: 80.0,
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage("https://picsum.photos/id/237/200/200"),
+                      backgroundImage: NetworkImage(widget.user.photoUrl),
                     ),
                   ),
                   Container(
@@ -79,7 +83,7 @@ class _AccountPageState extends State<AccountPage> {
                 ],
               ),
               Padding(padding: EdgeInsets.all(8.0)),
-              Text('KODING WARRIOR', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))
+              Text(widget.user.displayName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))
             ],
           ),
           Text("0\n게시물",
