@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,20 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  int _postCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Firestore.instance.collection('awesome-post').where('email', isEqualTo: widget.user.email) // 긁어오는 document의 조건을 명시
+      .getDocuments()
+      .then((snapshot) {
+        setState(() {
+          _postCount = snapshot.documents.length;
+        });
+      });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +101,7 @@ class _AccountPageState extends State<AccountPage> {
               Text(widget.user.displayName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))
             ],
           ),
-          Text("0\n게시물",
+          Text("$_postCount\n게시물",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18.0)
           ),
